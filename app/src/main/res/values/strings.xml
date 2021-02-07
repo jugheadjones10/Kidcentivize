@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Plzma</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <string name="query_question">I am a ...</string>
+    <string name="Parent">Parent</string>
+    <string name="Child">Child</string>
+
+    <string name="name_label">Name</string>
+    <string name="next_label">Next</string>
+
+    <string name="kid_code_label">Give mommy or daddy this code!</string>
+    <string name="parent_input_label">Child\'s code</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="usage_stats_label">Usage stats access</string>
+    <string name="device_admin_label">Device admin</string>
+    <string name="notification_access_label">Notification access</string>
+    <string name="draw_over_apps_label">Draw over other apps</string>
+    <string name="accessibility_label">Accessibility service</string>
+
+
+    <string name="admin_description">This enables Plzma to prevent itself from being disabled</string>
+    <string name="error_general">The operation failed :(</string>
+
+</resources>

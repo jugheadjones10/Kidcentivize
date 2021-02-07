@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.yj.kidcentivize.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_queryFragment"
+            app:destination="@id/queryFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_parentHomeFragment"
+            app:destination="@id/parentHomeFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_childHomeFragment"
+            app:destination="@id/childHomeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_dashboard"
+        android:name="com.yj.kidcentivize.ui.dashboard.DashboardFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_dashboard" />
+
+    <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="com.yj.kidcentivize.ui.notifications.NotificationsFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/queryFragment"
+        android:name="com.yj.kidcentivize.ui.onboard.QueryFragment"
+        android:label="QueryFragment" >
+        <action
+            android:id="@+id/action_queryFragment_to_inputDetailsFragment"
+            app:destination="@id/inputDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/inputDetailsFragment"
+        android:name="com.yj.kidcentivize.ui.onboard.InputDetailsFragment"
+        android:label="InputDetailsFragment" >
+        <action
+            android:id="@+id/action_inputDetailsFragment_to_parentCodeFragment"
+            app:destination="@id/parentCodeFragment" />
+        <action
+            android:id="@+id/action_inputDetailsFragment_to_childCodeFragment"
+            app:destination="@id/childCodeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/parentCodeFragment"
+        android:name="com.yj.kidcentivize.ui.onboard.ParentCodeFragment"
+        android:label="ParentCodeFragment" >
+        <action
+            android:id="@+id/action_parentCodeFragment_to_navigation_home"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true"
+            app:destination="@id/navigation_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/childCodeFragment"
+        android:name="com.yj.kidcentivize.ui.onboard.ChildCodeFragment"
+        android:label="ChildCodeFragment" >
+        <action
+            android:id="@+id/action_childCodeFragment_to_setupDevicePermissionsFragment"
+            app:destination="@id/setupDevicePermissionsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/parentHomeFragment"
+        android:name="com.yj.kidcentivize.ui.parent.ParentHomeFragment"
+        android:label="ParentHomeFragment" />
+    <fragment
+        android:id="@+id/childHomeFragment"
+        android:name="com.yj.kidcentivize.ui.child.ChildHomeFragment"
+        android:label="fragment_child_home"
+        tools:layout="@layout/fragment_child_home" />
+    <fragment
+        android:id="@+id/setupDevicePermissionsFragment"
+        android:name="com.yj.kidcentivize.ui.onboard.SetupDevicePermissionsFragment"
+        android:label="fragment_setup_device_permissions"
+        tools:layout="@layout/fragment_setup_device_permissions" >
+        <action
+            android:id="@+id/action_setupDevicePermissionsFragment_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
+</navigation>

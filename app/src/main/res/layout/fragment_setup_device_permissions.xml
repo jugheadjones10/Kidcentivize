@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <data>
+        <variable
+            name="handlers"
+            type="com.yj.kidcentivize.ui.onboard.SetupDevicePermissionsHandlers" />
+
+        <variable
+            name="usageStatsAccess"
+            type="RuntimePermissionStatus" />
+
+        <variable
+            name="protectionLevel"
+            type="ProtectionLevel" />
+
+        <variable
+            name="overlayPermission"
+            type="RuntimePermissionStatus" />
+
+
+        <import type="com.yj.kidcentivize.ui.onboard.RuntimePermissionStatus" />
+        <import type="com.yj.kidcentivize.ui.onboard.ProtectionLevel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/thirtytwo"
+        android:paddingRight="@dimen/thirtytwo"
+        tools:context=".ui.onboard.SetupDevicePermissionsFragment">
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchMaterial"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="@{usageStatsAccess == RuntimePermissionStatus.Granted ? true : false}"
+            android:onClick="@{() -> handlers.openUsageStatsSettings()}"
+            android:text="@string/usage_stats_label"
+            app:layout_constraintBottom_toTopOf="@+id/switchMaterial3"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:layout_editor_absoluteX="32dp" />
+
+<!--        May need to add OR clauses to checked -->
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchMaterial3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="@{protectionLevel == ProtectionLevel.DeviceOwner || protectionLevel == ProtectionLevel.SimpleDeviceAdmin ||  protectionLevel == ProtectionLevel.PasswordDeviceAdmin? true : false}"
+            android:onClick="@{() -> handlers.manageDeviceAdmin()}"
+            android:text="@string/device_admin_label"
+            app:layout_constraintBottom_toTopOf="@+id/switchMaterial5"
+            app:layout_constraintTop_toBottomOf="@+id/switchMaterial"
+            tools:layout_editor_absoluteX="66dp" />
+
+<!--        <com.google.android.material.switchmaterial.SwitchMaterial-->
+<!--            android:id="@+id/switchMaterial4"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:checked="false"-->
+<!--            android:onClick="@{() -> handlers.openNotificationAccessSettings()}"-->
+<!--            android:text="@string/notification_access_label"-->
+<!--            tools:layout_editor_absoluteX="63dp"-->
+<!--            tools:layout_editor_absoluteY="366dp" />-->
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchMaterial5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="@{overlayPermission == RuntimePermissionStatus.Granted ? true : false }"
+            android:onClick="@{() -> handlers.openDrawOverOtherAppsScreen()}"
+            android:text="@string/draw_over_apps_label"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/switchMaterial3"
+            tools:layout_editor_absoluteX="48dp" />
+
+        <!--        <com.google.android.material.switchmaterial.SwitchMaterial-->
+        <!--            android:id="@+id/switchMaterial2"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:checked="false"-->
+        <!--            android:onClick="@{() -> handlers.openAccessibilitySettings()}"-->
+        <!--            android:text="@string/accessibility_label"-->
+        <!--            tools:layout_editor_absoluteX="57dp"-->
+        <!--            tools:layout_editor_absoluteY="438dp" />-->
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/next_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/sixteen"
+            android:onClick="@{() -> handlers.gotoNextStep()}"
+            android:text="@string/next_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/switchMaterial5" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

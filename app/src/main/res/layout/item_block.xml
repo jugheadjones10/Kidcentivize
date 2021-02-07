@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="block"
+            type="com.yj.kidcentivize.db.Block" />
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_marginBottom="@dimen/thirtytwo"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/reward"
+        style="@style/MediumBold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_blue_bg"
+        android:paddingLeft="@dimen/eight"
+        android:paddingTop="@dimen/four"
+        android:paddingRight="@dimen/eight"
+        android:paddingBottom="@dimen/four"
+        tools:text="+40min"
+        android:text="@{`+` + Integer.toString(block.reward)}"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/time_till_expiry"
+        style="@style/MediumBold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/eight"
+        android:background="@drawable/round_red_bg"
+        android:paddingLeft="@dimen/eight"
+        android:paddingTop="@dimen/four"
+        android:paddingRight="@dimen/eight"
+        android:paddingBottom="@dimen/four"
+        tools:text="02:00"
+        android:text="@{Integer.toString(block.expiryTime)}"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toEndOf="@+id/reward"
+        app:layout_constraintTop_toTopOf="@+id/reward" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/tasks_list"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/reward"
+        app:layout_constraintTop_toBottomOf="@+id/reward"
+        android:layout_marginTop="@dimen/eight"
+        tools:listitem="@layout/item_task" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
