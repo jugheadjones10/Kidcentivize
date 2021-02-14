@@ -35,7 +35,6 @@ class UserRepository @Inject constructor(
                 foodTaskDao.deleteAll()
             }
         }
-
     }
 
     val parentCreated: MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
@@ -43,6 +42,12 @@ class UserRepository @Inject constructor(
     val users: LiveData<List<User>> = userDao.getAll()
     val kidCode: LiveData<String?> = Transformations.map(userDao.getOne()) {
         it?.code
+    }
+
+    suspend fun getUsers(): List<User>{
+        return withContext(Dispatchers.IO){
+            userDao.getAllAsync()
+        }
     }
 
     suspend fun getKidCode(name: String) {

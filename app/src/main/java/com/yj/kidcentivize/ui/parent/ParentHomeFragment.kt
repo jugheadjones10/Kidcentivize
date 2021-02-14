@@ -24,7 +24,7 @@ class ParentHomeFragment : Fragment() {
         binding = FragmentParentHomeBinding.inflate(inflater, container, false)
 
 //        parentViewModel.listenToBlocks()
-        parentViewModel.refreshBlocks()
+        parentViewModel.refreshBlocksForParent()
 
         return binding.root
     }

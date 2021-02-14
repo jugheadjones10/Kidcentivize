@@ -1,13 +1,11 @@
 package com.yj.kidcentivize.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.yj.kidcentivize.R
 import com.yj.kidcentivize.databinding.FragmentHomeBinding
@@ -34,23 +32,24 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val navController = findNavController()
-        onboardViewModel.users.observe(viewLifecycleOwner, Observer { users ->
-            Log.d("hey", "HomeFragment" + users.toString())
+
+        onboardViewModel.checkForUsers{ users ->
             if (users.isNotEmpty()) {
 
                 //User is child
                 if(users.first().kids == null){
                     navController.navigate(R.id.action_navigation_home_to_childHomeFragment)
 
-                //User is parent
+                    //User is parent
                 }else{
                     navController.navigate(R.id.action_navigation_home_to_parentHomeFragment)
                 }
 
-            } else {
+            } else if (users.isEmpty()) {
                 navController.navigate(R.id.action_navigation_home_to_queryFragment)
             }
-        })
+
+        }
     }
 
 

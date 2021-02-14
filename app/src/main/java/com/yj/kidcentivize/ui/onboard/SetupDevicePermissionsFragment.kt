@@ -13,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.yj.kidcentivize.R
 import com.yj.kidcentivize.databinding.FragmentSetupDevicePermissionsBinding
@@ -21,6 +22,7 @@ import com.yj.kidcentivize.receivers.AdminReceiver
 
 class SetupDevicePermissionsFragment : Fragment() {
 
+    private val onboardViewModel: OnboardViewModel by activityViewModels()
     private lateinit var binding: FragmentSetupDevicePermissionsBinding
 
     override fun onCreateView(
@@ -29,7 +31,6 @@ class SetupDevicePermissionsFragment : Fragment() {
     ): View? {
         binding = FragmentSetupDevicePermissionsBinding.inflate(inflater, container, false)
         val navController = findNavController()
-
 
         binding.handlers = object: SetupDevicePermissionsHandlers {
 
@@ -110,7 +111,23 @@ class SetupDevicePermissionsFragment : Fragment() {
             }
 
             override fun gotoNextStep() {
-                navController.navigate(R.id.action_setupDevicePermissionsFragment_to_navigation_home)
+//                onboardViewModel.users.observe(viewLifecycleOwner, Observer { users ->
+//                    Log.d("hey", "Setup Device permissions fragent Users : " + users.toString())
+//                    if (users.isNotEmpty()) {
+//
+//                        //User is child
+//                        if(users.first().kids == null){
+                            navController.navigate(R.id.action_setupDevicePermissionsFragment_to_navigation_home)
+//
+//                            //User is parent
+//                        }else{
+//
+//                        }
+//
+//                    } else {
+//
+//                    }
+//                })
             }
 
         }

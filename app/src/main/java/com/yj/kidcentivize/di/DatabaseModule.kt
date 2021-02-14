@@ -42,4 +42,9 @@ class DatabaseModule {
     fun provideFoodTaskDao(appDatabase: AppDatabase): FoodTaskDao {
         return appDatabase.foodTaskDao()
     }
+
+    @Provides
+    fun provideTimeDao(appDatabase: AppDatabase): TimeDao {
+        return appDatabase.timeDao()
+    }
 }

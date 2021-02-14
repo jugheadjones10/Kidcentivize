@@ -10,8 +10,14 @@ interface UserDao {
     @Query("SELECT * FROM user")
     fun getAll(): LiveData<List<User>>
 
+    @Query("SELECT * FROM user")
+    suspend fun getAllAsync(): List<User>
+
     @Query("SELECT * FROM user LIMIT 1")
     suspend fun getOneAsync(): User
+
+    @Query("SELECT timeRemaining FROM user LIMIT 1")
+    suspend fun getTimeRemaining(): Int
 
     @Query("SELECT * FROM user LIMIT 1")
     fun getOne(): LiveData<User>

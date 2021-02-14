@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.yj.kidcentivize.api.ApiStatus
+import com.yj.kidcentivize.db.User
 import com.yj.kidcentivize.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -64,6 +65,19 @@ class OnboardViewModel @Inject constructor(private val userRepository: UserRepos
         viewModelScope.launch {
             try {
                 userRepository.submitKidCode(code, name.value!!)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    fun checkForUsers(block: (List<User>) -> Unit){
+        viewModelScope.launch {
+            try {
+
+                val users = userRepository.getUsers()
+                block(users)
+
             } catch (e: Exception) {
                 e.printStackTrace()
             }
